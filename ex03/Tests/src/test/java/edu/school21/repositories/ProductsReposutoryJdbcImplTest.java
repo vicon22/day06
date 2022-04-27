@@ -1,6 +1,7 @@
 package edu.school21.repositories;
 
 import edu.school21.models.Product;
+import org.hsqldb.HsqlException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import static org.junit.jupiter.api.Assertions.*;
 
 import javax.sql.DataSource;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,10 +68,6 @@ public class ProductsReposutoryJdbcImplTest {
 
     @Test
     public void isUpdatedProductWithId4() {
-//        Product foundProduct = productsRepository.findById(4L).orElse(null);
-//        System.out.println(foundProduct);
-//        foundProduct.setName("iPhone12");
-//        foundProduct.setPrice(90000);
         productsRepository.update(new Product(4, "iPhone12",90000));
         Product updatedProduct = productsRepository.findById(4L).orElse(null);
         assertEquals(EXPECTED_UPDATED_PRODUCT, updatedProduct);
@@ -96,5 +94,4 @@ public class ProductsReposutoryJdbcImplTest {
         List<Product> productAfterDeleteList = productsRepository.findAll();
         assertEquals(productList.size() - 1, productAfterDeleteList.size());
     }
-
 }

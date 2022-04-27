@@ -66,6 +66,7 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
             throwables.printStackTrace();
         }
 
+
         return Optional.ofNullable(ret);
     }
 
@@ -78,7 +79,7 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
             preparedStatement.setInt(2, product.getPrice());
             preparedStatement.setInt(3, product.getId());
             preparedStatement.executeUpdate();
-            preparedStatement.close();
+//            preparedStatement.close();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
